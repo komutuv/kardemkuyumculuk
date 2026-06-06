@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lumiere</title>
+<title>Kardem Kuyumcu</title>
 
 <style>
 body{
@@ -25,98 +25,67 @@ padding:20px;
 
 .card{
 background:#111b31;
-border:1px solid rgba(255,255,255,.12);
 border-radius:20px;
 padding:22px;
 box-shadow:0 10px 40px rgba(0,0,0,.4);
 text-align:center;
 }
 
-h1{
-font-size:22px;
-margin-bottom:20px;
-letter-spacing:1px;
-}
-
-.btns{
-display:flex;
-flex-direction:column;
-gap:12px;
+/* LOGO / UNVAN */
+.logo{
+font-size:18px;
+font-weight:800;
+letter-spacing:.5px;
 margin-bottom:20px;
 }
 
-a{
-text-decoration:none;
-padding:14px;
-border-radius:14px;
-font-weight:700;
-display:flex;
-align-items:center;
-justify-content:center;
-transition:.2s;
-}
-
-a:hover{
-transform:scale(1.03);
-}
-
-.whatsapp{
-background:#25D366;
-color:#fff;
-}
-
-.instagram{
-background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
-color:#fff;
-}
-
-.google{
-background:#fff;
-color:#000;
-}
-
-.call{
-background:rgba(255,255,255,.12);
-color:#fff;
-border:1px solid rgba(255,255,255,.2);
-}
-
-/* BANKA KARTLARI */
+/* BANKA KART */
 .bank{
 border-radius:16px;
 padding:16px;
 margin-top:12px;
 text-align:left;
-font-size:14px;
-line-height:1.5;
 }
 
 .bank-title{
-font-weight:800;
+font-weight:700;
 margin-bottom:6px;
-font-size:15px;
 }
 
-/* YAPI KREDİ */
-.yapikredi{
-background:#1e3a8a;
-}
-
-/* QNB */
-.qnb{
-background:#5b2c83;
-}
+/* RENKLER */
+.yapikredi{ background:#1e3a8a; }
+.qnb{ background:#5b2c83; }
 
 .iban{
-font-weight:700;
+font-weight:800;
 letter-spacing:.5px;
-margin-top:4px;
+margin:8px 0;
 }
 
-.unvan{
-opacity:.85;
-font-size:13px;
-margin-top:6px;
+/* BUTONLAR */
+.actions{
+display:flex;
+gap:8px;
+margin-top:10px;
+}
+
+button{
+flex:1;
+border:none;
+border-radius:10px;
+padding:10px;
+font-weight:700;
+cursor:pointer;
+}
+
+.copy{
+background:#fff;
+color:#000;
+}
+
+.wp{
+background:#25D366;
+color:#fff;
 }
 </style>
 </head>
@@ -126,42 +95,48 @@ margin-top:6px;
 <div class="wrap">
 <div class="card">
 
-<h1>Lumiere Beauté</h1>
-
-<div class="btns">
-<a class="whatsapp" href="https://wa.me/905010773131" target="_blank">
-WhatsApp'tan Yaz
-</a>
-
-<a class="instagram" href="https://www.instagram.com/lumiere.beaute.iskenderun?igsh=MTZpdGF6NnNlcjc1" target="_blank">
-Instagram
-</a>
-
-<a class="google" href="https://share.google/3Xz4LbdMB2IVsznzb" target="_blank">
-Google Yorum Yap
-</a>
-
-<a class="call" href="tel:05010773131">
-Ara (0501 077 31 31)
-</a>
+<div class="logo">
+KARDEM KUYUMCU PIRLANTA TİCARET LİMİTED ŞİRKETİ
 </div>
 
 <!-- YAPI KREDİ -->
 <div class="bank yapikredi">
 <div class="bank-title">Yapı Kredi</div>
-<div class="iban">TR43 0006 7010 0000 0039 7554 53</div>
-<div class="unvan">KARDEM KUYUMCU PIRLANTA TİCARET LİMİTED ŞİRKETİ</div>
+<div class="iban" id="iban1">TR43 0006 7010 0000 0039 7554 53</div>
+
+<div class="actions">
+<button class="copy" onclick="copyIban('iban1')">Kopyala</button>
+<button class="wp" onclick="shareWhatsApp('iban1')">WhatsApp</button>
+</div>
 </div>
 
 <!-- QNB -->
 <div class="bank qnb">
 <div class="bank-title">QNB</div>
-<div class="iban">TR49 0011 1000 0000 0161 9091 16</div>
-<div class="unvan">KARDEM KUYUMCU PIRLANTA TİCARET LİMİTED ŞİRKETİ</div>
+<div class="iban" id="iban2">TR49 0011 1000 0000 0161 9091 16</div>
+
+<div class="actions">
+<button class="copy" onclick="copyIban('iban2')">Kopyala</button>
+<button class="wp" onclick="shareWhatsApp('iban2')">WhatsApp</button>
+</div>
 </div>
 
 </div>
 </div>
+
+<script>
+function copyIban(id){
+const text = document.getElementById(id).innerText;
+navigator.clipboard.writeText(text);
+alert("IBAN kopyalandı");
+}
+
+function shareWhatsApp(id){
+const text = document.getElementById(id).innerText;
+const message = "IBAN: " + text;
+window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
+}
+</script>
 
 </body>
 </html>
